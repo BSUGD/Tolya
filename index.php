@@ -18,4 +18,25 @@ fscanf(STDIN, "%d\n", $a);  //  считывание 3 вводных чисел
 fscanf(STDIN, "%d\n", $b);
 fscanf(STDIN, "%d\n", $c);
 
+//  проверка является ли каждое из введенных integer или float (целым или числом с десятичной дробью), иначе говоря, будет считать уравнение, только если введены числа
+if(!((is_int($a) || is_float($a)) && (is_int($b) || is_float($b)) && (is_int($c) || is_float($c)))) {
+  Logger::log("Enter only numbers");
+} else {
+  Logger::log("The entered equation is " . $a . "x^2 + " . $b . "x + " . $c . " = 0");  // добавление в массив логов строки с уравнением
+  $equation = new Anatoly\Quadratic();
+  try {
+    $solution = $equation->solve($a, $b, $c);  // запись в $solution корней уравнения (если нет ошибки)
+    
+	//if(is_array($solution, true)) {
+      Logger::log("Equation solution: " . implode(",", $solution)); // добавление в массив логов строки с корнями
+    //} //else {
+      //Logger::log("Equation solution: " . $solution);  // добавление в массив логов строки с ОДНИМ корнем
+    //} 
+  } catch(AnatolyException $e) {  // если возникла ошибка класса AnatolyException (уравнение не существует или нет корней), то текст ошибки добавляется в конец массива логов
+    Logger::log($e->getMessage());
+  }
+
+
+}
+Logger::write();  // вывод всех логов на экран
 ?>
