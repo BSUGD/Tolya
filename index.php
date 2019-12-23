@@ -1,69 +1,21 @@
 <?php
-Class MyClassC {
-		protected $x;
-//		array_push($this->x,$root);
-		
-		public function getX(){
-			return $this->x;
-		}
-		public function setX($val){
-			$this->x = $val;
-		}
-		public function lineaFindRoots($k, $b){
-			if($k == 0){
-				throw new RuntimeException ("����� ��������� ��� ����������");
-			}
-			return $this->x = -$b/$k;
-		}
-}
-Class MyClassA extends MyClassC {
-	
-	protected function findDiscriminant ($a,$b,$c) {
-		return pow($b, 2) - 4 * $a * $c;
-	}
-	public function squareFindRoots($a,$b,$c) {
-		if($a == 0){
-			throw new $this->linearFindRoots($b, $c);
-		}
-		$disc = $this->findDiscriminant($a,$b,$c);
-		if($disc > 0) {
-			$this->x = Array(
-				(-1 * $b + sqrt($disc))/(2 * $a),
-				(-1 * $b - sqrt($disc))/(2 * $a)
-			);
-		
-		}
-		if($disc == 0) {
-			$this->x (-1 * $b)/(2 *$a);
-		}
-		if ($disc < 0){
-			return false;
-		}
-		return $this->x;
-	}	
+include "core/LogInterface.php";   // подключение всех файлов
+include "core/LogAbstract.php";
+include "core/EquationInterface.php";
+include "Anatoly/AnatolyException.php";
+include "Anatoly/Logger.php";
+include "Anatoly/Line.php";
+include "Anatoly/Quadratic.php";
 
-}
+use core\LogInterface;  // создание сокращенных имен классов, чтобы обращаться к ним без неймспейса
+use core\LogAbstract;
+use core\EquationInterface;
+use Anatoly\Logger;
+use Anatoly\AnatolyException;
 
-Class MyClassB extends MyClassA {
-	public function __construct($obj1, $obj2) {
-		$this->obj1 = $obj1;
-		$this->obj2 = $obj2;
-	}
-	
-	public $obj2;
+echo "Enter 3 parameters a, b and c \n";
+fscanf(STDIN, "%d\n", $a);  //  считывание 3 вводных чисел из командной строки
+fscanf(STDIN, "%d\n", $b);
+fscanf(STDIN, "%d\n", $c);
 
-}
-
-$MyClassC = new MyClassC();
-$MyClassC->linearFindRoots(6, 12);
-
-$MyClassA = new MyClassA();
-$MyClassA->squareFindRoots(6,12,5)
-/*
-$obj5 = new MyClassC();
-$obj4 = new MyClassA($obj5);
-$obj3 = new MyClassA($obj4);
-$obj2 = new MyClassB($obj3,$obj5);
-$obj1 = new MyClassA($obj2);
-*/	
 ?>
