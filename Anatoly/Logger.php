@@ -14,8 +14,8 @@ class Logger extends \core\LogAbstract implements \core\LogInterface {
     $logName = new \DateTime();
     $logName = $logName->format('d.m.Y_H,i,s') . ".log";
 	
-	if(!is_dir("Log")) {
-		mkdir("Log");
+	if(!is_dir(BASEURI . "Log")) {
+		mkdir(BASEURI . "Log");
 	}
 	
     file_put_contents(BASEURI . "/Log/" . $logName, implode("\n\r", self::Instance()->log));
