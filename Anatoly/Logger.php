@@ -13,6 +13,11 @@ class Logger extends \core\LogAbstract implements \core\LogInterface {
   public function _write() {  // метод, соединяющий массив логов в строку(\n - перенос строки, вставляется между всеми элементами) и выводящий ее на экран
     $logName = new \DateTime();
     $logName = $logName->format('d.m.Y_H,i,s') . ".log";
+	
+	if(!is_dir(BASEURI . "Log")) {
+		mkdir(BASEURI . "Log");
+	}
+	
     file_put_contents(BASEURI . "/Log/" . $logName, implode("\n\r", self::Instance()->log));
     print_r(implode("\n", self::Instance()->log));
   }
