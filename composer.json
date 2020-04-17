@@ -1,0 +1,33 @@
+{
+  "name": "trpo",
+  "require": {
+    "anatoly": "*"
+  },
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "core",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/rok9ru/trpo-core.git",
+          "reference": "master"
+        },
+        "version": "@dev"
+      }
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/BSUGD/anatoly.git"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "anatoly\\": "../../"
+    }
+  },
+  "config": {
+    "vendor-dir": "/"
+  }
+}
